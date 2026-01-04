@@ -9,8 +9,11 @@ This is a Scoreboard that will show your players First and Last name, Job, and t
 - [@iinsanegaming](https://www.github.com/iinsanegaming)
 
 
-## Screenshots
+## original Screenshots
 
 ![image](https://github.com/user-attachments/assets/83d94782-08ed-4e01-af48-baf42e52b0b0)
 
+## my screenshot
+
+<img width="319" height="329" alt="scoreboard" src="https://github.com/user-attachments/assets/33193cbd-c626-4ef9-888c-9403d429f790" />
 
