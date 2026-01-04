@@ -1,0 +1,219 @@
+:root {
+  --bg-overlay: rgba(0, 0, 0, 1.0);
+  --bg-overlay-2: rgba(0, 0, 0, 0.3);
+  --bg-overlay-3: rgba(0, 0, 0, 0.2);
+  --box-bg: rgba(0, 0, 0, 0.4);
+  --glass-blur: blur(8px);
+  --primary-text: #fff;
+  --muted-text: #ccc;
+  --color-anuncio:    #ffee58;    /* Amarillo claro, similar a luz de farol */
+  --highlight-text: #ffd97d;
+  --soft-border: rgba(255, 255, 255, 0.08);
+  --soft-border-2: rgba(255, 255, 255, 0.05);
+  --shadow: rgba(0,0,0,0.4);
+}
+
+body {/* 
+  width: 100%;
+  height: 100%;
+  margin: 0; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* background: linear-gradient(to left, var(--bg-overlay), transparent); */
+  color: var(--primary-text);
+  overflow: hidden;
+}
+
+#scoreboard {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: none;
+  padding: 10px;
+  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), 
+                     calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  overflow-y: auto;
+}
+
+/* Fade animations for the scoreboard root */
+#scoreboard.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#scoreboard.fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+
+/* Logo next to title */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.server-logo {
+  width: 80px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.header h2 {
+  text-align: center;
+  font-size: 24px;
+  background: none;
+  color: var(--highlight-text);
+  text-shadow: 1px 1px 2px var(--shadow);
+  padding: 10px;
+  border: 2px solid var(--highlight-text);
+}
+
+.scoreboard-body {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.sidebar {
+  width: 105px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.duty-count {
+  background: rgba(255,255,255,0.1);
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-text);
+  padding: 6px 8px;
+  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 14px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+  transition: box-shadow 0.3s ease;
+}
+
+.duty-count:hover {
+  box-shadow: inset 0 0 8px var(--highlight-text), 0 0 10px var(--highlight-text);
+}
+
+.duty-count .label {
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: var(--primary-text);
+}
+
+.duty-count .value {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.main {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.clock {
+  font-size: 13px;
+  color: var(--muted-text);
+  margin-left: 12px;
+  text-shadow: 1px 1px 2px var(--shadow);
+  white-space: nowrap;
+  align-self: flex-end;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-overlay-3);
+  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background-color: var(--soft-border-2);
+  color: var(--highlight-text);
+  text-transform: uppercase;
+}
+
+td {
+  background-color: rgba(255, 255, 255, 0.035);
+  border-top: 1px solid var(--bg-overlay-2);
+}
+
+td:nth-child(1), td:nth-child(3) {
+  color: #d4d4d4;
+}
+
+td:nth-child(2) {
+  color: #fff;
+  font-weight: 500;
+}
+
+tr:hover {
+  background-color: var(--soft-border-2);
+}
+
+td.permission-warning {
+  color: var(--muted-text);
+  font-style: italic;
+  text-align: center;
+}
+
+body.no-access #scoreboard {
+  background: linear-gradient(to left, rgba(30, 30, 30, 0.95), transparent);
+}
+
+body.no-access .header h2 {
+  color: var(--muted-text);
+  border-color: var(--soft-border);
+  text-shadow: none;
+}
+
+body.no-access th, body.no-access td {
+  color: var(--muted-text);
+}
+
+body.no-access td {
+  font-style: italic;
+}
+
+.value.pulse {
+  transform: scale(1.12);
+  transition: transform 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  #scoreboard {
+    right: 2%;
+    left: 2%;
+    width: auto;
+    max-width: none;
+    top: 2%;
+  }
+
+  .scoreboard-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
