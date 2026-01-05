@@ -55,7 +55,74 @@ To be able to see the scoreboard use the command `/scoreboard`.
 ### In-Game Clock (New)
 - Real-time in-game date and time
 - 12-hour format with AM/PM
-- Example format:
+- Example format: Monday May 12, 1899 2:30 PM
+
+
+### Performance & Stability
+- No continuous tick spam
+- No forced key listeners in NUI
+- Safe fade fallback if transition events fail
+- Prevents duplicate show/hide calls
+
+---
+
+## Technical Overview
+
+### Client (`scoreboard/client.lua`)
+- PGDN toggle
+- No NUI focus
+- Event-driven updates
+- Optional auto-refresh
+- Dedicated in-game clock thread
+
+### NUI (`html/script.js`)
+- Minimal DOM updates
+- No input listeners
+- Fade animation handling
+- Defensive rendering
+- Modular sidebar creation
+
+---
+
+## Design Philosophy
+
+- **Non-intrusive UI**
+- **Low performance cost**
+- **Framework-compatible**
+- **Government RP ready**
+- **Server-authoritative by design**
+
+This version is intended for servers using:
+- `rsg-core`
+- `rsg-governor`
+- `rsg-residency`
+- `rsg-economy`
+
+---
+
+## Notes
+
+- This resource does **not** include administrative controls
+- Intended as a **read-only scoreboard**
+- Safe for long RP sessions and large player counts
+
+---
+
+## License & Credit
+
+All original work is credited to **@iinsanegaming**.  
+This modified version is shared with respect to the original creator and is intended as an **enhanced fork**, not a replacement.
+
+---
+
+If you wish to:
+- Add region-based sections
+- Show governor names per region
+- Add treasury or tax readouts
+- Provide a compact/minimal mode
+
+those can be layered on **without rewriting** this scoreboard.
+
 
 # Changelog
 
